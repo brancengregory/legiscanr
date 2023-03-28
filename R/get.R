@@ -5,7 +5,6 @@
 #' @param state A state abbreviation
 #'
 #' @export
-#' @returns
 #'
 get_session_list <- function(state = NULL) {
   if (is.null(state)) {
