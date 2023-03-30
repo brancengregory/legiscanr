@@ -47,6 +47,7 @@ get_master_list <- function(id = NULL, state = NULL) {
           purrr::flatten() |>
           tibble::as_tibble()
     ) |>
+    purrr::discard_at(1) |>
     purrr::list_rbind()
 }
 
@@ -89,7 +90,11 @@ get_bill <- function(id) {
   res <- req_legiscan(op = "getBill", id = id)
 
   res$bill |>
-    tibble::as_tibble()
+    purrr::map(
+      ~ .x |>
+          tibble::as_tibble()
+    ) |>
+    purrr::list_rbind()
 }
 
 #' @title Get Bill Text
