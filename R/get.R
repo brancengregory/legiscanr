@@ -44,8 +44,8 @@ get_master_list <- function(id = NULL, state = NULL) {
   res$masterlist |>
     purrr::map(
       ~ .x |>
-          purrr::flatten() |>
-          tibble::as_tibble()
+        purrr::flatten() |>
+        tibble::as_tibble()
     ) |>
     purrr::discard_at(1) |>
     purrr::list_rbind()
@@ -181,15 +181,24 @@ get_person <- function(id) {
 #' 
 get_dataset_list <- function(state = NULL, year = NULL) {
 
-  params <- list(
-    state = state,
-    year = year
-  )
+  if (is.null(state) & is.null(year)) {
+    res <- req_legiscan(op = "getDatasetList")
+  } else {
+    params <- list(
+      state = state,
+      year = year
+    )
 
-  res <- req_legiscan(op = "getDatasetList", params)
+    res <- req_legiscan(op = "getDatasetList", params)
+  }
 
   res$datasetlist |>
-    purrr::map_df(~ tibble::as_tibble(.x))
+    purrr::map(
+      ~ .x |>
+        purrr::flatten() |>
+        tibble::as_tibble()
+    ) |>
+    purrr::list_rbind()
 }
 
 #' @title Get Dataset
