@@ -1,0 +1,7 @@
+"status_id","status_desc"
+"1","Introduced"
+"2","Engrossed"
+"3","Enrolled"
+"4","Passed"
+"5","Vetoed"
+"6","Failed"
