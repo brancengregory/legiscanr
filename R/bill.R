@@ -9,12 +9,15 @@
 get_bill <- function(id) {
   res <- legiscan_request(op = "getBill", id = id)
 
-  res$bill |>
+  res$bill <- res$bill |>
     map_at("session", as_tibble) |>
     map_at(
       c("progress", "referrals", "history", "sponsors", "sasts", "texts", "votes", "supplements"),
       ~ map(.x, as_tibble) |> list_rbind()
-    )
+    ) |>
+    map(~if (is.data.frame(.x) | is.list(.x)) { list(.x) } else {.x})
+
+  tibble(!!!res$bill)
 }
 
 #' @title Get Bill Text
