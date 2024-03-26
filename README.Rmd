@@ -13,6 +13,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+![legiscanr logo](inst/legiscanr.svg)
+
 # legiscanr
 
 <!-- badges: start -->
