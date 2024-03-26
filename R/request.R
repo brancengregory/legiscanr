@@ -1,7 +1,7 @@
 legiscan_api_url <- "https://api.legiscan.com/"
 
 
-req_legiscan <- function(..., base_url = legiscan_api_url, op = NULL, key = Sys.getenv("LEGISCAN_API_KEY")) {
+legiscan_request <- function(..., base_url = legiscan_api_url, op = NULL, key = Sys.getenv("LEGISCAN_API_KEY")) {
   if (is.null(op)) {
     stop("Must specify an operation")
   }

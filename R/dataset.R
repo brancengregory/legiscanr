@@ -10,14 +10,14 @@
 get_dataset_list <- function(state = NULL, year = NULL) {
 
   if (is.null(state) & is.null(year)) {
-    res <- req_legiscan(op = "getDatasetList")
+    res <- legiscan_request(op = "getDatasetList")
   } else {
     params <- list(
       state = state,
       year = year
     )
 
-    res <- req_legiscan(op = "getDatasetList", params)
+    res <- legiscan_request(op = "getDatasetList", params)
   }
 
   res$datasetlist |>
@@ -39,7 +39,7 @@ get_dataset_list <- function(state = NULL, year = NULL) {
 #' @export
 #'
 get_dataset <- function(id, access_key) {
-  res <- req_legiscan(op = "getDataset", id = id, access_key = access_key)
+  res <- legiscan_request(op = "getDataset", id = id, access_key = access_key)
 
   res$dataset
 }

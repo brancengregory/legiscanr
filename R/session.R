@@ -9,9 +9,9 @@
 #'
 get_session_list <- function(state = NULL) {
   if (is.null(state)) {
-    res <- req_legiscan(op = "getSessionList")
+    res <- legiscan_request(op = "getSessionList")
   } else {
-    res <- req_legiscan(op = "getSessionList", state = state)
+    res <- legiscan_request(op = "getSessionList", state = state)
   }
 
   res$sessions |>
@@ -32,7 +32,7 @@ get_session_list <- function(state = NULL) {
 #' @export
 #'
 get_session_people <- function(id) {
-  res <- req_legiscan(op = "getSessionPeople", id = id)
+  res <- legiscan_request(op = "getSessionPeople", id = id)
 
   res$sessionpeople$people |>
     purrr::map(tibble::as_tibble) |>
