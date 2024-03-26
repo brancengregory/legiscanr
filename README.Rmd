@@ -1,4 +1,22 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
 # legiscanr
+
+<!-- badges: start -->
+<!-- badges: end -->
 
 legiscanr is an R package designed to simplify the process of accessing and interacting with the LegiScan API, enabling users to easily retrieve legislative data. This package leverages the tidyverse conventions and aims to provide a user-friendly interface for querying legislative information, including bill status, legislative sessions, and more.
 
