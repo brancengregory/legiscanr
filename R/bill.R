@@ -9,16 +9,43 @@
 get_bill <- function(id) {
   res <- legiscan_request(op = "getBill", id = id)
 
-  res$bill <- res$bill |>
-    map_at("session", as_tibble) |>
-    map_at(
-      c("progress", "referrals", "history", "sponsors", "sasts", "texts", "votes", "supplements"),
-      ~ map(.x, as_tibble) |> list_rbind()
-    ) |>
-    map(~if (is.data.frame(.x) | is.list(.x)) { list(.x) } else {.x})
-
-  tibble(!!!res$bill)
+  res$bill
 }
+
+new_bill <- function(x) {
+  x <- purrr::map(x, list_to_tibble)
+
+  structure(x, class = "bill")
+}
+
+validate_bill <- function(x) {
+  x
+}
+
+bill <- function(id) {
+  b <- get_bill(id)
+
+  new_bill(b) |>
+    validate_bill()
+}
+
+bill_info <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_info")
+  }
+
+  res <- bill |>
+    purrr::keep(rlang::is_scalar_atomic) |>
+    tibble::as_tibble()
+
+  return(res)
+}
+
 
 #' @title Get Bill Text
 #'
