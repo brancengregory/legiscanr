@@ -35,7 +35,6 @@ bill_info <- function(bill) {
   }
 
   if (!inherits(bill, "bill")) {
-    # TODO: handle error better
     rlang::abort("blah err in bill_info")
   }
 
