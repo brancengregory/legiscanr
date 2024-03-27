@@ -30,7 +30,7 @@ bill <- function(id) {
 }
 
 bill_info <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integer(bill)) {
     bill <- bill(bill)
   }
 
@@ -46,6 +46,181 @@ bill_info <- function(bill) {
   return(res)
 }
 
+bill_progress <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_progress")
+  }
+
+  res <- bill |>
+    purrr::pluck("progress")
+
+  return(res)
+}
+
+bill_committee <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_committee")
+  }
+
+  res <- bill |>
+    purrr::pluck("committee")
+
+  return(res)
+}
+
+bill_referrals <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_referrals")
+  }
+
+  res <- bill |>
+    purrr::pluck("referrals")
+
+  return(res)
+}
+
+bill_history <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_history")
+  }
+
+  res <- bill |>
+    purrr::pluck("history")
+
+  return(res)
+}
+
+bill_sponsors <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_sponsors")
+  }
+
+  res <- bill |>
+    purrr::pluck("sponsors")
+
+  return(res)
+}
+
+bill_sasts <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_sasts")
+  }
+
+  res <- bill |>
+    purrr::pluck("sasts")
+
+  return(res)
+}
+
+bill_texts <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "texts")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_texts")
+  }
+
+  res <- bill |>
+    purrr::pluck("texts")
+
+  return(res)
+}
+
+bill_votes <- function(bill) {
+  if (rlang::is_string(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_votes")
+  }
+
+  res <- bill |>
+    purrr::pluck("votes")
+
+  return(res)
+}
+
+bill_amendments <- function(bill) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_amendments")
+  }
+
+  res <- bill |>
+    purrr::pluck("amendments")
+
+  return(res)
+}
+
+bill_supplements <- function(bill) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_supplements")
+  }
+
+  res <- bill |>
+    purrr::pluck("supplements")
+
+  return(res)
+}
+
+bill_calendar <- function(bill) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
+    bill <- bill(bill)
+  }
+
+  if (!inherits(bill, "bill")) {
+    # TODO: handle error better
+    rlang::abort("blah err in bill_calendar")
+  }
+
+  res <- bill |>
+    purrr::pluck("calendar")
+
+  return(res)
+}
 
 #' @title Get Bill Text
 #'
