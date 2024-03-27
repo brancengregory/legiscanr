@@ -30,7 +30,7 @@ bill <- function(id) {
 }
 
 bill_info <- function(bill) {
-  if (rlang::is_string(bill) | rlang::is_integer(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -47,7 +47,7 @@ bill_info <- function(bill) {
 }
 
 bill_progress <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -63,7 +63,7 @@ bill_progress <- function(bill) {
 }
 
 bill_committee <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -79,7 +79,7 @@ bill_committee <- function(bill) {
 }
 
 bill_referrals <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -95,7 +95,7 @@ bill_referrals <- function(bill) {
 }
 
 bill_history <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -221,6 +221,7 @@ bill_calendar <- function(bill) {
 
   return(res)
 }
+
 
 #' @title Get Bill Text
 #'
