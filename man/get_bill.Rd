@@ -7,8 +7,21 @@
 get_bill(id)
 }
 \arguments{
-\item{id}{A bill ID}
+\item{id}{PARAM_DESCRIPTION}
+}
+\value{
+OUTPUT_DESCRIPTION
 }
 \description{
-Get a bill by ID.
+FUNCTION_DESCRIPTION
+}
+\details{
+DETAILS
+}
+\examples{
+\dontrun{
+if(interactive()){
+ #EXAMPLE1
+ }
+}
 }

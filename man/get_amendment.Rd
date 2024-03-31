@@ -7,8 +7,21 @@
 get_amendment(id)
 }
 \arguments{
-\item{id}{An amendment ID}
+\item{id}{PARAM_DESCRIPTION}
+}
+\value{
+OUTPUT_DESCRIPTION
 }
 \description{
-Get an amendment by ID
+FUNCTION_DESCRIPTION
+}
+\details{
+DETAILS
+}
+\examples{
+\dontrun{
+if(interactive()){
+ #EXAMPLE1
+ }
+}
 }

@@ -7,8 +7,21 @@
 get_supplement(id)
 }
 \arguments{
-\item{id}{A supplement ID}
+\item{id}{PARAM_DESCRIPTION}
+}
+\value{
+OUTPUT_DESCRIPTION
 }
 \description{
-Get a supplement by ID
+FUNCTION_DESCRIPTION
+}
+\details{
+DETAILS
+}
+\examples{
+\dontrun{
+if(interactive()){
+ #EXAMPLE1
+ }
+}
 }

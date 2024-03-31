@@ -7,8 +7,21 @@
 get_roll_call(id)
 }
 \arguments{
-\item{id}{A roll call ID}
+\item{id}{PARAM_DESCRIPTION}
+}
+\value{
+OUTPUT_DESCRIPTION
 }
 \description{
-Get a roll call by ID
+FUNCTION_DESCRIPTION
+}
+\details{
+DETAILS
+}
+\examples{
+\dontrun{
+if(interactive()){
+ #EXAMPLE1
+ }
+}
 }

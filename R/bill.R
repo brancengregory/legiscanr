@@ -1,10 +1,15 @@
 #' @title Get Bill
-#'
-#' @description Get a bill by ID.
-#'
-#' @param id A bill ID
-#'
-#' @export
+#' @description FUNCTION_DESCRIPTION
+#' @param id PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname get_bill
 #'
 get_bill <- function(id) {
   res <- legiscan_request(op = "getBill", id = id)
@@ -12,16 +17,59 @@ get_bill <- function(id) {
   res$bill
 }
 
+#' @title New Bill
+#' @description FUNCTION_DESCRIPTION
+#' @param x PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[purrr]{map}}
+#' @rdname new_bill
+#' @importFrom purrr map
+#'
 new_bill <- function(x) {
   x <- purrr::map(x, list_to_tibble)
 
   structure(x, class = "bill")
 }
 
+#' @title Validate Bill
+#' @description FUNCTION_DESCRIPTION
+#' @param x PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname validate_bill
+#'
 validate_bill <- function(x) {
   x
 }
 
+#' @title Bill
+#' @description FUNCTION_DESCRIPTION
+#' @param id PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname bill
+#' @export
+#'
 bill <- function(id) {
   b <- get_bill(id)
 
@@ -29,6 +77,27 @@ bill <- function(id) {
     validate_bill()
 }
 
+#' @title Bill Info
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{keep}}
+#'  \code{\link[tibble]{as_tibble}}
+#' @rdname bill_info
+#' @export
+#' @importFrom rlang is_string is_integerish abort is_scalar_atomic
+#' @importFrom purrr keep
+#' @importFrom tibble as_tibble
+#'
 bill_info <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -46,6 +115,25 @@ bill_info <- function(bill) {
   return(res)
 }
 
+#' @title Bill Progress
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_progress
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_progress <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -62,6 +150,25 @@ bill_progress <- function(bill) {
   return(res)
 }
 
+#' @title Bill Committee
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_committee
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_committee <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -78,6 +185,25 @@ bill_committee <- function(bill) {
   return(res)
 }
 
+#' @title Bill Referrals
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_referrals
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_referrals <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -94,6 +220,25 @@ bill_referrals <- function(bill) {
   return(res)
 }
 
+#' @title Bill History
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_history
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_history <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -110,6 +255,25 @@ bill_history <- function(bill) {
   return(res)
 }
 
+#' @title Bill Sponsors
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_sponsors
+#' @export
+#' @importFrom rlang is_string abort
+#' @importFrom purrr pluck
+#'
 bill_sponsors <- function(bill) {
   if (rlang::is_string(bill)) {
     bill <- bill(bill)
@@ -126,6 +290,25 @@ bill_sponsors <- function(bill) {
   return(res)
 }
 
+#' @title Bill SASTs
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_sasts
+#' @export
+#' @importFrom rlang is_string abort
+#' @importFrom purrr pluck
+#'
 bill_sasts <- function(bill) {
   if (rlang::is_string(bill)) {
     bill <- bill(bill)
@@ -142,6 +325,25 @@ bill_sasts <- function(bill) {
   return(res)
 }
 
+#' @title Bill Texts
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_texts
+#' @export
+#' @importFrom rlang is_string abort
+#' @importFrom purrr pluck
+#'
 bill_texts <- function(bill) {
   if (rlang::is_string(bill)) {
     bill <- bill(bill)
@@ -158,6 +360,25 @@ bill_texts <- function(bill) {
   return(res)
 }
 
+#' @title Bill Votes
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_votes
+#' @export
+#' @importFrom rlang is_string abort
+#' @importFrom purrr pluck
+#'
 bill_votes <- function(bill) {
   if (rlang::is_string(bill)) {
     bill <- bill(bill)
@@ -174,6 +395,25 @@ bill_votes <- function(bill) {
   return(res)
 }
 
+#' @title Bill Amendments
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_amendments
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_amendments <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -190,6 +430,25 @@ bill_amendments <- function(bill) {
   return(res)
 }
 
+#' @title Bill Supplements
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_supplements
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_supplements <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -206,6 +465,25 @@ bill_supplements <- function(bill) {
   return(res)
 }
 
+#' @title Bill Calendar
+#' @description FUNCTION_DESCRIPTION
+#' @param bill PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[rlang]{scalar-type-predicates}}, \code{\link[rlang]{is_integerish}}, \code{\link[rlang]{abort}}
+#'  \code{\link[purrr]{pluck}}
+#' @rdname bill_calendar
+#' @export
+#' @importFrom rlang is_string is_integerish abort
+#' @importFrom purrr pluck
+#'
 bill_calendar <- function(bill) {
   if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
@@ -224,10 +502,20 @@ bill_calendar <- function(bill) {
 
 
 #' @title Get Bill Text
-#'
-#' @description Get the text of a bill by ID
-#'
-#' @param id A bill ID
+#' @description FUNCTION_DESCRIPTION
+#' @param id PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[dplyr]{reexports}}
+#' @rdname get_bill_text
+#' @importFrom dplyr as_tibble
 #'
 get_bill_text <- function(id) {
   res <- legiscan_request(op = "getBillText", id = id)
@@ -237,10 +525,17 @@ get_bill_text <- function(id) {
 }
 
 #' @title Get Amendment
-#'
-#' @description Get an amendment by ID
-#'
-#' @param id An amendment ID
+#' @description FUNCTION_DESCRIPTION
+#' @param id PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname get_amendment
 #'
 get_amendment <- function(id) {
   res <- legiscan_request(op = "getAmendment", id = id)
@@ -250,10 +545,17 @@ get_amendment <- function(id) {
 
 
 #' @title Get Supplement
-#'
-#' @description Get a supplement by ID
-#'
-#' @param id A supplement ID
+#' @description FUNCTION_DESCRIPTION
+#' @param id PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname get_supplement
 #'
 get_supplement <- function(id) {
   res <- legiscan_request(op = "getSupplement", id = id)
@@ -262,12 +564,17 @@ get_supplement <- function(id) {
 }
 
 #' @title Get Roll Call
-#'
-#' @description Get a roll call by ID
-#'
-#' @param id A roll call ID
-#'
-#' @export
+#' @description FUNCTION_DESCRIPTION
+#' @param id PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname get_roll_call
 #'
 get_roll_call <- function(id) {
   res <- legiscan_request(op = "getRollCall", id = id)
