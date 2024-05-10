@@ -8,16 +8,10 @@
 #' @export
 #'
 get_dataset_list <- function(state = NULL, year = NULL) {
-
   if (is.null(state) & is.null(year)) {
     res <- legiscan_request(op = "getDatasetList")
   } else {
-    params <- list(
-      state = state,
-      year = year
-    )
-
-    res <- legiscan_request(op = "getDatasetList", params)
+    res <- legiscan_request(op = "getDatasetList", state = state, year = year)
   }
 
   res$datasetlist |>

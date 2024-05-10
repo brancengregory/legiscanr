@@ -275,7 +275,7 @@ bill_history <- function(bill) {
 #' @importFrom purrr pluck
 #'
 bill_sponsors <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -310,7 +310,7 @@ bill_sponsors <- function(bill) {
 #' @importFrom purrr pluck
 #'
 bill_sasts <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -345,7 +345,7 @@ bill_sasts <- function(bill) {
 #' @importFrom purrr pluck
 #'
 bill_texts <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
@@ -380,7 +380,7 @@ bill_texts <- function(bill) {
 #' @importFrom purrr pluck
 #'
 bill_votes <- function(bill) {
-  if (rlang::is_string(bill)) {
+  if (rlang::is_string(bill) | rlang::is_integerish(bill)) {
     bill <- bill(bill)
   }
 
