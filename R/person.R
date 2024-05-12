@@ -13,6 +13,7 @@ get_person <- function(id) {
     dplyr::as_tibble()
 }
 
+
 #' @title Get Sponsored List
 #'
 #' @description Get a list of bills sponsored by a person

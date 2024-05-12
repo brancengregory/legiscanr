@@ -349,7 +349,7 @@ bill_texts <- function(bill) {
     bill <- bill(bill)
   }
 
-  if (!inherits(bill, "texts")) {
+  if (!inherits(bill, "bill")) {
     # TODO: handle error better
     rlang::abort("blah err in bill_texts")
   }
