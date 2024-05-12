@@ -68,12 +68,14 @@ bill_texts <- session_dirs |>
 
 write_csv(bill_texts, here("inst/data/bill_texts.csv"))
 
+# Check total file size: ~19GB
 bill_texts |>
   summarise(
     total_size = sum(text_size) |>
       rlang::as_bytes()
   )
 
+# Get PDFs
 download_and_save_text <- function(url, file) {
   dest <- here("inst/docs/bills", str_c(file, ".pdf"))
 
@@ -93,3 +95,65 @@ walk2(
   safely_download_and_save_text,
   .progress = TRUE
 )
+
+# Check which weren't downloaded
+# Small network errors are expected, hence using purrr::safely
+# 120k network requests is a lot to go right!
+
+bill_texts <- read_csv(here("inst/data/bill_texts.csv"))
+
+bill_text_docs <- fs::dir_ls(here("inst/docs/bills/")) |>
+  fs::path_file() |>
+  fs::path_ext_remove() |>
+  as_tibble_col(column_name = "doc_id")
+
+new_docs <- bill_texts |>
+  filter(
+    !doc_id %in% bill_text_docs$doc_id
+  )
+
+walk2(
+  new_docs$url,
+  new_docs$doc_id,
+  safely_download_and_save_text,
+  .progress = TRUE
+)
+
+# Get summary stats for docs
+bill_texts |>
+  count(type)
+
+bill_texts |>
+  count(dir) |>
+  mutate(
+    dir = str_extract(dir, "OK\\/\\d{4}-(\\d{4})_Regular_Session", group = 1)
+  ) |>
+  rename(session = dir)
+
+
+# Convert pdfs to text files and store grouped by regular session year
+
+extract_text_to_file <- function(src) {
+  src_name <- src |>
+    fs::path_file() |>
+    fs::path_ext_remove()
+
+  dest_name <- src_name |>
+    fs::path_ext_set("txt")
+
+  dest_dir <- here("inst/docs/full_text/")
+
+  dest_path <- fs::path(dest_dir, dest_name)
+
+  pdftools::pdf_text(src) |>
+    str_flatten(collapse = " ") |>
+    write_file(dest_path)
+}
+
+safely_extract_text_to_file <- safely(extract_text_to_file)
+
+fs::dir_ls(here("inst/docs/bills/")) |>
+  walk(
+    safely_extract_text_to_file,
+    .progress = TRUE
+  )
